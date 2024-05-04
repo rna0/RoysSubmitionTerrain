@@ -15,7 +15,7 @@ public class FmsScript : MonoBehaviour
 
     public float jumpSpeed = 5f;
 
-    // 1  character
+    // 1 character
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -38,11 +38,11 @@ public class FmsScript : MonoBehaviour
     {
         //2
         look.x += Input.GetAxis("Mouse X") * mouseSensivity; //2 camera
-        look.y += Input.GetAxis("Mouse Y") * mouseSensivity; //2  camera
+        look.y += Input.GetAxis("Mouse Y") * mouseSensivity; //2 camera
         //Returns rotation z,x,y degrees around the z,x,y applied in that order.
         look.y = Mathf.Clamp(look.y, -90, 90);
         cameraTransform.localRotation = Quaternion.Euler(-look.y, 0, 0); //2.1
-        transform.localRotation = Quaternion.Euler(0, look.x, 0); //2   palyer
+        transform.localRotation = Quaternion.Euler(0, look.x, 0); //2  palyer
     }
 
     void UpdateMovement()
@@ -65,7 +65,7 @@ public class FmsScript : MonoBehaviour
 
     private void UpdateGravity()
     {
-        //4    
+        //4  
 
         var gravity = Physics.gravity * mass * Time.deltaTime;
         //Check CharacterController touching the ground during the last move?
