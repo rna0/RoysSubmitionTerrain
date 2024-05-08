@@ -10,8 +10,14 @@ namespace Player
         private CharacterController controller;
         private Vector3 playerVelocity;
         private bool isGrounded;
+        public bool isMovementPressed;
+        public bool _isRunPressed;
         public float playerSpeed = 7f;
         public float gravity = -9.81f;
+        public Vector3 movementDirection;
+        public Vector3 runMovement;
+        public float runMultiplier = 2f;
+        public float rotationSpeed = 1f;
 
         public float jumpHeight = 0.75f;
 
@@ -33,10 +39,21 @@ namespace Player
 
         public void ProcessMovement(Vector2 input)
         {
-            Vector3 movementDirection = Vector3.zero;
             movementDirection.x = input.x;
             movementDirection.z = input.y;
-            controller.Move(transform.TransformDirection(movementDirection) * playerSpeed * Time.deltaTime);
+            runMovement = movementDirection * runMultiplier;
+            isMovementPressed = input.x != 0 || input.y != 0;
+
+            // Rotate the player model in the direction of movement
+            if (isMovementPressed)
+            {
+                Quaternion toRotation = Quaternion.LookRotation(new Vector3(input.x, 0, input.y), Vector3.up);
+                transform.rotation =
+                    Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
+            }
+
+            controller.Move(transform.TransformDirection(!_isRunPressed ? movementDirection : runMovement) *
+                            (playerSpeed * Time.deltaTime));
             playerVelocity.y += gravity * Time.deltaTime;
             if (isGrounded && playerVelocity.y < 0)
             {

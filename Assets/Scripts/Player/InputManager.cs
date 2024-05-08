@@ -1,42 +1,80 @@
-using Player;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class InputManager : MonoBehaviour
+namespace Player
 {
-    private PlayerInput playerInput;
-    private PlayerInput.OnFootActions onFoot;
-    private PlayerMotor motor;
-    private PlayerLook look;
-
-    // Start is called before the first frame update
-    void Awake()
+    public class InputManager : MonoBehaviour
     {
-        playerInput = new PlayerInput();
-        onFoot = playerInput.OnFoot;
-        motor = GetComponent<PlayerMotor>();
-        look = GetComponent<PlayerLook>();
-        onFoot.Jump.performed += ctx => motor.jump();
-        onFoot.Take.performed += ctx => motor.Take();
-    }
+        private PlayerInput playerInput;
+        private PlayerInput.OnFootActions onFoot;
+        private PlayerMotor motor;
+        private PlayerLook look;
+        public Animator _animator;
+        private static readonly int IsWalking = Animator.StringToHash("IsWalking");
+        private static readonly int IsRunning = Animator.StringToHash("IsRunning");
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        motor.ProcessMovement(onFoot.Movement.ReadValue<Vector2>());
-    }
+        // Start is called before the first frame update
+        void Awake()
+        {
+            playerInput = new PlayerInput();
+            onFoot = playerInput.OnFoot;
+            motor = GetComponent<PlayerMotor>();
+            look = GetComponent<PlayerLook>();
+            onFoot.Jump.performed += ctx => motor.jump();
+            onFoot.Take.performed += ctx => motor.Take();
+            playerInput.OnFoot.Run.started += onRun;
+            playerInput.OnFoot.Run.canceled += onRun;
+        }
 
-    void LateUpdate()
-    {
-        look.ProcessLook(onFoot.Look.ReadValue<Vector2>());
-    }
+        void onRun(InputAction.CallbackContext context)
+        {
+            motor._isRunPressed = context.ReadValueAsButton();
+        }
 
-    private void OnEnable()
-    {
-        onFoot.Enable();
-    }
+        // Update is called once per frame
+        void FixedUpdate()
+        {
+            HandleAnimation();
+            motor.ProcessMovement(onFoot.Movement.ReadValue<Vector2>());
+        }
 
-    private void OnDisable()
-    {
-        onFoot.Disable();
+        void LateUpdate()
+        {
+            look.ProcessLook(onFoot.Look.ReadValue<Vector2>());
+        }
+
+        void HandleAnimation()
+        {
+            bool isWalking = _animator.GetBool(IsWalking);
+            bool isRunning = _animator.GetBool(IsRunning);
+
+            if (motor.isMovementPressed && !isWalking)
+            {
+                _animator.SetBool(IsWalking, true);
+            }
+            else if (!motor.isMovementPressed && isWalking)
+            {
+                _animator.SetBool(IsWalking, false);
+            }
+
+            if (motor.isMovementPressed && motor._isRunPressed && !isRunning)
+            {
+                _animator.SetBool(IsRunning, true);
+            }
+            else if (!motor.isMovementPressed && !motor._isRunPressed && isRunning)
+            {
+                _animator.SetBool(IsRunning, false);
+            }
+        }
+
+        private void OnEnable()
+        {
+            onFoot.Enable();
+        }
+
+        private void OnDisable()
+        {
+            onFoot.Disable();
+        }
     }
 }
