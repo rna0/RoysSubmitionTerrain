@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerMotor : MonoBehaviour
@@ -11,6 +12,9 @@ public class PlayerMotor : MonoBehaviour
     public float gravity = -9.81f;
 
     public float jumpHeight = 0.75f;
+
+    public List<GameObject> collectibleBones = new();
+    private int bonesCollected = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -46,5 +50,17 @@ public class PlayerMotor : MonoBehaviour
         {
             playerVelocity.y = Mathf.Sqrt(jumpHeight * -3f * gravity);
         }
+    }
+
+    public void Take()
+    {
+        foreach (var bone in collectibleBones.Where(bone =>
+                     bone != null && bone.CompareTag("CollectableBone")))
+        {
+            bonesCollected++;
+            Destroy(bone);
+        }
+
+        collectibleBones.Clear();
     }
 }
