@@ -28,7 +28,7 @@ namespace Player
 
         void onRun(InputAction.CallbackContext context)
         {
-            motor._isRunPressed = context.ReadValueAsButton();
+            motor.isRunPressed = context.ReadValueAsButton();
         }
 
         // Update is called once per frame
@@ -57,11 +57,11 @@ namespace Player
                 _animator.SetBool(IsWalking, false);
             }
 
-            if (motor.isMovementPressed && motor._isRunPressed && !isRunning)
+            if (motor.isMovementPressed && motor.isRunPressed && !isRunning)
             {
                 _animator.SetBool(IsRunning, true);
             }
-            else if (!motor.isMovementPressed && !motor._isRunPressed && isRunning)
+            else if (!motor.isMovementPressed && !motor.isRunPressed && isRunning)
             {
                 _animator.SetBool(IsRunning, false);
             }

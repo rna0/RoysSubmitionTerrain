@@ -2,22 +2,24 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Player
 {
     public class PlayerMotor : MonoBehaviour
     {
-        private CharacterController controller;
-        private Vector3 playerVelocity;
-        private bool isGrounded;
+        private CharacterController _controller;
+        private Vector3 _playerVelocity;
+        private bool _isGrounded;
         public bool isMovementPressed;
-        public bool _isRunPressed;
+        public bool isRunPressed;
         public float playerSpeed = 7f;
         public float gravity = -9.81f;
         public Vector3 movementDirection;
         public Vector3 runMovement;
         public float runMultiplier = 2f;
         public float rotationSpeed = 1f;
+        public string winningSceneName;
 
         public float jumpHeight = 0.75f;
 
@@ -28,13 +30,13 @@ namespace Player
         // Start is called before the first frame update
         void Start()
         {
-            controller = GetComponent<CharacterController>();
+            _controller = GetComponent<CharacterController>();
         }
 
         // Update is called once per frame
         void Update()
         {
-            isGrounded = controller.isGrounded;
+            _isGrounded = _controller.isGrounded;
         }
 
         public void ProcessMovement(Vector2 input)
@@ -52,23 +54,23 @@ namespace Player
                     Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
             }
 
-            controller.Move(transform.TransformDirection(!_isRunPressed ? movementDirection : runMovement) *
-                            (playerSpeed * Time.deltaTime));
-            playerVelocity.y += gravity * Time.deltaTime;
-            if (isGrounded && playerVelocity.y < 0)
+            _controller.Move(transform.TransformDirection(!isRunPressed ? movementDirection : runMovement) *
+                             (playerSpeed * Time.deltaTime));
+            _playerVelocity.y += gravity * Time.deltaTime;
+            if (_isGrounded && _playerVelocity.y < 0)
             {
-                playerVelocity.y = -2f;
+                _playerVelocity.y = -2f;
             }
 
-            controller.Move(playerVelocity * Time.deltaTime);
+            _controller.Move(_playerVelocity * Time.deltaTime);
             // Debug.Log(playerVelocity.y);
         }
 
         public void jump()
         {
-            if (isGrounded)
+            if (_isGrounded)
             {
-                playerVelocity.y = Mathf.Sqrt(jumpHeight * -3f * gravity);
+                _playerVelocity.y = Mathf.Sqrt(jumpHeight * -3f * gravity);
             }
         }
 
@@ -83,6 +85,11 @@ namespace Player
             }
 
             collectibleBones.Clear();
+            if (bonesLeft == 0)
+            {
+                boneCountText.text = "All Bones Collected!";
+                SceneManager.LoadScene(winningSceneName);
+            }
         }
     }
 }
