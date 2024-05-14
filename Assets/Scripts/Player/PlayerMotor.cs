@@ -66,14 +66,14 @@ namespace Player
             // Debug.Log(playerVelocity.y);
         }
 
-        public void jump()
+        public void Jump()
         {
             if (_isGrounded)
             {
                 _playerVelocity.y = Mathf.Sqrt(jumpHeight * -3f * gravity);
             }
         }
-        //0 115 68 128
+        
         public void Take()
         {
             foreach (var bone in collectibleBones.Where(bone =>

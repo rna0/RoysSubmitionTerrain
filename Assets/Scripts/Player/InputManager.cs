@@ -20,7 +20,7 @@ namespace Player
             onFoot = playerInput.OnFoot;
             motor = GetComponent<PlayerMotor>();
             look = GetComponent<PlayerLook>();
-            onFoot.Jump.performed += ctx => motor.jump();
+            onFoot.Jump.performed += ctx => motor.Jump();
             onFoot.Take.performed += ctx => motor.Take();
             playerInput.OnFoot.Run.started += onRun;
             playerInput.OnFoot.Run.canceled += onRun;

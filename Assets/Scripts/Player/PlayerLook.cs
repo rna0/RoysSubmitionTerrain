@@ -1,22 +1,25 @@
 using UnityEngine;
 
-public class PlayerLook : MonoBehaviour
+namespace Player
 {
-    public Camera playerCamera;
-    private float _xRotation;
-
-    public float xSensitivity = 40f;
-    public float ySensitivity = 40f;
-
-    public void ProcessLook(Vector2 input)
+    public class PlayerLook : MonoBehaviour
     {
-        var mouseX = input.x;
-        var mouseY = input.y;
+        public Camera playerCamera;
+        private float _xRotation;
 
-        _xRotation -= mouseY * Time.deltaTime * ySensitivity;
-        _xRotation = Mathf.Clamp(_xRotation, -80f, 80f);
+        public float xSensitivity = 40f;
+        public float ySensitivity = 40f;
 
-        playerCamera.transform.localRotation = Quaternion.Euler(_xRotation, 0, 0);
-        transform.Rotate(Vector3.up * mouseX * Time.deltaTime * xSensitivity);
+        public void ProcessLook(Vector2 input)
+        {
+            var mouseX = input.x;
+            var mouseY = input.y;
+
+            _xRotation -= mouseY * Time.deltaTime * ySensitivity;
+            _xRotation = Mathf.Clamp(_xRotation, -80f, 80f);
+
+            playerCamera.transform.localRotation = Quaternion.Euler(_xRotation, 0, 0);
+            transform.Rotate(Vector3.up * mouseX * Time.deltaTime * xSensitivity);
+        }
     }
 }
