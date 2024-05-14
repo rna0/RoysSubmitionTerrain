@@ -3,6 +3,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -22,7 +23,7 @@ namespace Player
 
         public float jumpHeight = 0.75f;
 
-        public List<GameObject> collectibleBones = new();
+        [FormerlySerializedAs("collectibleBones")] public List<GameObject> collectableBones = new();
         public int bonesLeft = 4;
         public TMP_Text boneCountText;
 
@@ -67,15 +68,26 @@ namespace Player
 
         public void Take()
         {
-            foreach (var bone in collectibleBones.Where(bone =>
+            HandleBoneCollection();
+            HandleDoorOpen();
+        }
+
+        private void HandleDoorOpen()
+        {
+            
+        }
+
+        private void HandleBoneCollection()
+        {
+            foreach (var bone in collectableBones.Where(bone =>
                          bone != null && bone.CompareTag("CollectableBone")))
             {
                 bonesLeft--;
                 Destroy(bone);
                 boneCountText.text = bonesLeft + " עצמות נותרו!";
             }
-
-            collectibleBones.Clear();
+            collectableBones.Clear();
+            
             if (bonesLeft == 0)
             {
                 boneCountText.text = "כל העצמות נמצאו!";

@@ -11,19 +11,19 @@ namespace Player
             _motor = GetComponent<PlayerMotor>();
         }
 
-        void OnTriggerEnter(Collider other)
+        private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("CollectableBone"))
             {
-                _motor.collectibleBones.Add(other.gameObject);
+                _motor.collectableBones.Add(other.gameObject);
             }
         }
 
-        void OnTriggerExit(Collider other)
+        private void OnTriggerExit(Collider other)
         {
             if (other.CompareTag("CollectableBone"))
             {
-                _motor.collectibleBones.Remove(other.gameObject);
+                _motor.collectableBones.Remove(other.gameObject);
             }
         }
     }
