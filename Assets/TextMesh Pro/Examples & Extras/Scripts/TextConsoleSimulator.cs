@@ -1,6 +1,5 @@
-using UnityEngine;
 using System.Collections;
-
+using UnityEngine;
 
 namespace TMPro.Examples
 {
@@ -59,7 +58,7 @@ namespace TMPro.Examples
                 if (hasTextChanged)
                 {
                     totalVisibleCharacters = textInfo.characterCount; // Update visible character count.
-                    hasTextChanged = false; 
+                    hasTextChanged = false;
                 }
 
                 if (visibleCount > totalVisibleCharacters)
@@ -86,7 +85,8 @@ namespace TMPro.Examples
             textComponent.ForceMeshUpdate();
 
             int totalWordCount = textComponent.textInfo.wordCount;
-            int totalVisibleCharacters = textComponent.textInfo.characterCount; // Get # of Visible Character in text object
+            int totalVisibleCharacters =
+                textComponent.textInfo.characterCount; // Get # of Visible Character in text object
             int counter = 0;
             int currentWord = 0;
             int visibleCount = 0;
@@ -116,6 +116,5 @@ namespace TMPro.Examples
                 yield return new WaitForSeconds(0.1f);
             }
         }
-
     }
 }

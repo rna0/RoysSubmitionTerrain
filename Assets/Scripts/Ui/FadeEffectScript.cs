@@ -1,7 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 namespace Ui
 {
@@ -9,11 +7,11 @@ namespace Ui
     {
         public TMP_Text hellText;
         public float fadeSpeed = 5;
-        public bool entrance = false;
+        public bool entrance = true;
 
         private void Start()
         {
-            hellText.color = Color.clear;
+            hellText.color = Color.white;
         }
 
         private void FixedUpdate()
@@ -28,6 +26,7 @@ namespace Ui
 
         private void OnTriggerExit(Collider col)
         {
+            Debug.Log("Exit");
             if (col.gameObject.CompareTag("Player")) entrance = false;
         }
 

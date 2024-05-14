@@ -73,7 +73,7 @@ namespace Player
                 _playerVelocity.y = Mathf.Sqrt(jumpHeight * -3f * gravity);
             }
         }
-        
+
         public void Take()
         {
             foreach (var bone in collectibleBones.Where(bone =>
