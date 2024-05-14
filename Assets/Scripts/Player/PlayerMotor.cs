@@ -18,7 +18,6 @@ namespace Player
         public Vector3 movementDirection;
         public Vector3 runMovement;
         public float runMultiplier = 2f;
-        public float rotationSpeed = 1f;
         public string winningSceneName;
 
         public float jumpHeight = 0.75f;
@@ -45,14 +44,6 @@ namespace Player
             movementDirection.z = input.y;
             runMovement = movementDirection * runMultiplier;
             isMovementPressed = input.x != 0 || input.y != 0;
-
-            // Rotate the player model in the direction of movement
-            if (isMovementPressed)
-            {
-                Quaternion toRotation = Quaternion.LookRotation(new Vector3(input.x, 0, input.y), Vector3.up);
-                transform.rotation =
-                    Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
-            }
 
             _controller.Move(transform.TransformDirection(!isRunPressed ? movementDirection : runMovement) *
                              (playerSpeed * Time.deltaTime));
