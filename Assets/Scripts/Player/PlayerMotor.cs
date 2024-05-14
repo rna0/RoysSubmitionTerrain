@@ -73,7 +73,7 @@ namespace Player
                 _playerVelocity.y = Mathf.Sqrt(jumpHeight * -3f * gravity);
             }
         }
-
+        //0 115 68 128
         public void Take()
         {
             foreach (var bone in collectibleBones.Where(bone =>
@@ -81,13 +81,13 @@ namespace Player
             {
                 bonesLeft--;
                 Destroy(bone);
-                boneCountText.text = bonesLeft + " Bones left to find!";
+                boneCountText.text = bonesLeft + " עצמות נותרו!";
             }
 
             collectibleBones.Clear();
             if (bonesLeft == 0)
             {
-                boneCountText.text = "All Bones Collected!";
+                boneCountText.text = "כל העצמות נמצאו!";
                 SceneManager.LoadScene(winningSceneName);
             }
         }

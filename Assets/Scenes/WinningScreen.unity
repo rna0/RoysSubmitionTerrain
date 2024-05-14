@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731704, g: 0.13414727, b: 0.121078536, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -313,10 +313,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Quit
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6a25845e4ee96af4faa206a105d8563e, type: 2}
-  m_sharedMaterial: {fileID: 8924165733917928336, guid: 6a25845e4ee96af4faa206a105d8563e, type: 2}
+  m_text: "\u05E6\u05D0"
+  m_isRightToLeft: 1
+  m_fontAsset: {fileID: 11400000, guid: 399916f4683941946abe671eb7a1059f, type: 2}
+  m_sharedMaterial: {fileID: 429079642077788528, guid: 399916f4683941946abe671eb7a1059f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -416,13 +416,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 297959631}
-  m_LocalRotation: {x: 0, y: 0, z: 0.13052616, w: 0.9914449}
+  m_LocalRotation: {x: 0, y: 0, z: -0.13052624, w: 0.9914449}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1614509431}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -15}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -535,10 +535,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Play Again?
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6a25845e4ee96af4faa206a105d8563e, type: 2}
-  m_sharedMaterial: {fileID: 8924165733917928336, guid: 6a25845e4ee96af4faa206a105d8563e, type: 2}
+  m_text: "\u05E9\u05D7\u05E7 \u05E9\u05D5\u05D1"
+  m_isRightToLeft: 1
+  m_fontAsset: {fileID: 11400000, guid: 399916f4683941946abe671eb7a1059f, type: 2}
+  m_sharedMaterial: {fileID: 429079642077788528, guid: 399916f4683941946abe671eb7a1059f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -669,10 +669,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: You Won!
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 222252cae4184ba418766d882e62d896, type: 2}
-  m_sharedMaterial: {fileID: 8924165733917928336, guid: 222252cae4184ba418766d882e62d896, type: 2}
+  m_text: "\u05E0\u05D9\u05E6\u05D7\u05EA!"
+  m_isRightToLeft: 1
+  m_fontAsset: {fileID: 11400000, guid: 4d190cf7f84b6774696f4528c56524fd, type: 2}
+  m_sharedMaterial: {fileID: 429079642077788528, guid: 4d190cf7f84b6774696f4528c56524fd, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
