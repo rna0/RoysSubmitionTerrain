@@ -20,12 +20,20 @@ namespace Player
         public Vector3 runMovement;
         public float runMultiplier = 2f;
         public string winningSceneName;
+        private PlayerActions playerActions;
 
         public float jumpHeight = 0.75f;
 
-        [FormerlySerializedAs("collectibleBones")] public List<GameObject> collectableBones = new();
+        [FormerlySerializedAs("collectibleBones")]
+        public List<GameObject> collectableBones = new();
+
         public int bonesLeft = 4;
         public TMP_Text boneCountText;
+
+        void Awake()
+        {
+            playerActions = GetComponent<PlayerActions>();
+        }
 
         // Start is called before the first frame update
         void Start()
@@ -68,13 +76,13 @@ namespace Player
 
         public void Take()
         {
+            playerActions.OnTake();
             HandleBoneCollection();
             HandleDoorOpen();
         }
 
         private void HandleDoorOpen()
         {
-            
         }
 
         private void HandleBoneCollection()
@@ -86,8 +94,9 @@ namespace Player
                 Destroy(bone);
                 boneCountText.text = bonesLeft + " עצמות נותרו!";
             }
+
             collectableBones.Clear();
-            
+
             if (bonesLeft == 0)
             {
                 boneCountText.text = "כל העצמות נמצאו!";

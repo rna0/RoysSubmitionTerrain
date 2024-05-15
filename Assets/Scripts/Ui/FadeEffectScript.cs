@@ -26,7 +26,6 @@ namespace Ui
 
         private void OnTriggerExit(Collider col)
         {
-            Debug.Log("Exit");
             if (col.gameObject.CompareTag("Player")) entrance = false;
         }
 
