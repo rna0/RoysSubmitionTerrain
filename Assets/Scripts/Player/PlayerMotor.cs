@@ -24,7 +24,6 @@ namespace Player
 
         public float jumpHeight = 0.75f;
 
-        [FormerlySerializedAs("collectibleBones")]
         public List<GameObject> collectableBones = new();
 
         public int bonesLeft = 4;
