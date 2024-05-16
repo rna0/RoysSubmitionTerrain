@@ -27,9 +27,10 @@ namespace Door
 
         private void Awake()
         {
+            // transform.rotation = Quaternion.Euler(0, 90, 0);
             _startRotation = transform.rotation.eulerAngles;
             // Since "Forward" actually is pointing into the door frame, choose a direction to think about as "forward" 
-            _forward = transform.right;
+            _forward = transform.forward;
             _startPosition = transform.position;
         }
 

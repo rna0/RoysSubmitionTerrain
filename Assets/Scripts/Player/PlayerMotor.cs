@@ -75,7 +75,7 @@ namespace Player
 
         public void Take()
         {
-            playerActions.OnTake();
+            playerActions.CheckDoorOnTake();
             HandleBoneCollection();
             HandleDoorOpen();
         }

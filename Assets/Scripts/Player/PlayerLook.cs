@@ -10,6 +10,11 @@ namespace Player
         public float xSensitivity = 40f;
         public float ySensitivity = 40f;
 
+        private void Awake()
+        {
+            playerCamera.transform.localRotation = new Quaternion(0, 0, 0, 0);
+        }
+
         public void ProcessLook(Vector2 input)
         {
             var mouseX = input.x;

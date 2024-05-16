@@ -15,9 +15,8 @@ namespace Player
         [SerializeField]
         private LayerMask UseLayers;
 
-        public void OnTake()
+        public void CheckDoorOnTake()
         {
-            Debug.Log("Take");
             if (Physics.Raycast(Camera.position, Camera.forward, out RaycastHit hit, MaxUseDistance, UseLayers))
             {
                 if (hit.collider.TryGetComponent<DoorBehavior>(out DoorBehavior door))
@@ -41,14 +40,14 @@ namespace Player
             {
                 if (door.isOpen)
                 {
-                    UseText.SetText("פתח עם מקש \"E\"");
+                    UseText.SetText("סגור דלת");
                 }
                 else
                 {
-                    UseText.SetText("סגור עם מקש \"E\"");
+                    UseText.SetText("פתח דלת");
                 }
                 UseText.gameObject.SetActive(true);
-                UseText.transform.position = hit.point - (hit.point - Camera.position).normalized * 0.01f;
+                UseText.transform.position = hit.point - (hit.point - Camera.position).normalized * 0.02f;
                 UseText.transform.rotation = Quaternion.LookRotation((hit.point - Camera.position).normalized);
             }
             else
