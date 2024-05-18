@@ -1,9 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
-using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 namespace Player
 {
@@ -19,15 +14,9 @@ namespace Player
         public Vector3 movementDirection;
         public Vector3 runMovement;
         public float runMultiplier = 2f;
-        public string winningSceneName;
         private PlayerActions playerActions;
 
         public float jumpHeight = 0.75f;
-
-        public List<GameObject> collectableBones = new();
-
-        public int bonesLeft = 4;
-        public TMP_Text boneCountText;
 
         void Awake()
         {
@@ -76,31 +65,6 @@ namespace Player
         public void Take()
         {
             playerActions.CheckDoorOnTake();
-            HandleBoneCollection();
-            HandleDoorOpen();
-        }
-
-        private void HandleDoorOpen()
-        {
-        }
-
-        private void HandleBoneCollection()
-        {
-            foreach (var bone in collectableBones.Where(bone =>
-                         bone != null && bone.CompareTag("CollectableBone")))
-            {
-                bonesLeft--;
-                Destroy(bone);
-                boneCountText.text = bonesLeft + " עצמות נותרו!";
-            }
-
-            collectableBones.Clear();
-
-            if (bonesLeft == 0)
-            {
-                boneCountText.text = "כל העצמות נמצאו!";
-                SceneManager.LoadScene(winningSceneName);
-            }
         }
     }
 }
